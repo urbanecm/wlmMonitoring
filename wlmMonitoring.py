@@ -22,6 +22,7 @@ for row in lists:
 	rowData = {}
 	monumentListEncoded = urllib.quote_plus(row[0])
 	monumentList = row[0]
+	print monumentList
 	#Get num of monuments in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -29,6 +30,7 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['total'] = data[0][0]
+	print "Total: " + str(data[0][0])
 	#Get num of monuments with an image in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -36,6 +38,7 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['image'] = data[0][0]
+	print "Image:" + str(data[0][0])
 	rowData['image%'] = float(rowData['image'])/(float(rowData['total'])/float(100))
 	#Get num of monuments with an article in the list
 	cur = connHeritage.cursor()
