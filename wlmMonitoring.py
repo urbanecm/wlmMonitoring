@@ -9,6 +9,8 @@ from wmflabs import db
 connHeritage = db.connect('s51138__heritage_p')
 connWiki = db.connect('cswiki')
 
+warnings = []
+
 #Get all monuments lists in cswiki
 cur = connWiki.cursor()
 with cur:
@@ -72,3 +74,6 @@ print json.dumps(res)
 of = open('output.json', 'w')
 of.write(json.dumps(res))
 os.system('cp output.json /data/project/urbanecmbot/test/public/wlmMonitoringOutput.json')
+#Warnings to JSON
+wf = open('warnings.json', 'w')
+wf.write(json.dumps(warnings))
