@@ -14,7 +14,7 @@ warnings = []
 #Get all monuments lists in cswiki
 cur = connWiki.cursor()
 with cur:
-	sql = 'select page_title from page where page_title like "Seznam_kulturních_památek%" and page_is_redirect=0 and page_namespace=0;'
+	sql = 'select page_title from page where page_title like "Seznam_kulturních_památek%" and page_is_redirect=0 and page_namespace=0 and page_id not in (select cl_from from categorylinks where cl_to="Wikipedie:Rozcestníky");'
 	cur.execute(sql)
 	lists = cur.fetchall()
 
