@@ -2,7 +2,6 @@
 #-*- coding: utf-8 -*-
 
 #Import libs and init them
-import os
 import urllib
 import json
 from wmflabs import db
@@ -85,7 +84,6 @@ for row in lists:
 #Data to JSON
 of = open('output.json', 'w')
 of.write(json.dumps(res))
-os.system('cp output.json /data/project/urbanecmbot/test/public/wlmMonitoringOutput.json')
 #Warnings to JSON
 wf = open('warnings.json', 'w')
 wf.write(json.dumps(warnings))
