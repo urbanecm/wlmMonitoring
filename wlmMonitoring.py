@@ -25,7 +25,6 @@ for row in lists:
 	rowData = {}
 	monumentListEncoded = urllib.quote_plus(row[0])
 	monumentList = row[0]
-	print monumentList
 	#Get num of monuments in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -36,7 +35,6 @@ for row in lists:
 	if rowData['total'] == 0:
 		totalZero = True
 		warnings.append("Total is zero in list named " + monumentList)
-	print "Total: " + str(data[0][0])
 	#Get num of monuments with an image in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -44,7 +42,6 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['image'] = data[0][0]
-	print "Image:" + str(data[0][0])
 	if totalZero == False:
 		rowData['image%'] = float(rowData['image'])/(float(rowData['total'])/float(100))
 	else:
