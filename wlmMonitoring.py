@@ -20,6 +20,7 @@ with cur:
 
 res = {}
 for row in lists:
+	totalZero = False
 	#For every list fetch required data
 	rowData = {}
 	monumentListEncoded = urllib.quote_plus(row[0])
@@ -32,6 +33,9 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['total'] = data[0][0]
+	if rowData['total'] == 0:
+		totalZero = True
+		warnings.append("Total is zero in list named " + monumentList)
 	print "Total: " + str(data[0][0])
 	#Get num of monuments with an image in the list
 	cur = connHeritage.cursor()
@@ -41,7 +45,10 @@ for row in lists:
 		data = cur.fetchall()
 	rowData['image'] = data[0][0]
 	print "Image:" + str(data[0][0])
-	rowData['image%'] = float(rowData['image'])/(float(rowData['total'])/float(100))
+	if totalZero == False:
+		rowData['image%'] = float(rowData['image'])/(float(rowData['total'])/float(100))
+	else:
+		rowData['image%'] = 0
 	#Get num of monuments with an article in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -49,7 +56,10 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['article'] = data[0][0]
-	rowData['article%'] = float(rowData['article'])/(float(rowData['total'])/float(100))
+	if totalZero == False:
+		rowData['article%'] = float(rowData['article'])/(float(rowData['total'])/float(100))
+	else:
+		rowData['article%'] = 0
 	#Get num of monuments with lon+lat in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -57,7 +67,10 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['coor'] = data[0][0]
-	rowData['coor%'] = float(rowData['coor'])/(float(rowData['total'])/float(100))
+	if totalZero == False:
+		rowData['coor%'] = float(rowData['coor'])/(float(rowData['total'])/float(100))
+	else:
+		rowData['coor%'] = 0
 	#Get num of monuments with commonscat in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -65,7 +78,10 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['commonscat'] = data[0][0]
-	rowData['comonscat%'] = float(rowData['commonscat'])/(float(rowData['total'])/float(100))
+	if totalZero == False:
+		rowData['comonscat%'] = float(rowData['commonscat'])/(float(rowData['total'])/float(100))
+	else:
+		rowData['commonscat%'] = 0
 	#Add rowData to all results
 	res[monumentList] = rowData
 
