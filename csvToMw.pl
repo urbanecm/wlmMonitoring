@@ -2,7 +2,7 @@
 #Retrieved from "http://wiki.crc.nd.edu/wiki/index.php/Convert_CSV_To_Wiki_Table"
 open(INPUT, "< input.csv")
        or die "Couldn't open file for reading: $!\n";
-open(OUTPUT, "> output.txt")
+open(OUTPUT, "> mediawiki.mw")
        or die "Couldn't open file for writing: $!\n";   
 
 while (<INPUT>) {
