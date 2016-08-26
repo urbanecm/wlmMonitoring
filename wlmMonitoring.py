@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 #Import libs and init them
+import os
 import urllib
 import json
 from wmflabs import db
@@ -67,3 +68,4 @@ for row in lists:
 print json.dumps(res)
 of = open('output.json', 'w')
 of.write(json.dumps(res))
+os.system('cp output.json /data/project/urbanecmbot/test/public/wlmMonitoringOutput.json')
