@@ -35,6 +35,7 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['image'] = data[0][0]
+	rowData['image%'] = float(rowData['image'])/(float(rowData['total'])/float(100))
 	#Get num of monuments with an article in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -42,6 +43,7 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['article'] = data[0][0]
+	rowData['article%'] = float(rowData['article'])/(float(rowData['total'])/float(100))
 	#Get num of monuments with lon+lat in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -49,6 +51,7 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['coor'] = data[0][0]
+	rowData['coor%'] = float(rowData['coor'])/(float(rowData['total'])/float(100))
 	#Get num of monuments with commonscat in the list
 	cur = connHeritage.cursor()
 	with cur:
@@ -56,6 +59,7 @@ for row in lists:
 		cur.execute(sql)
 		data = cur.fetchall()
 	rowData['commonscat'] = data[0][0]
+	rowData['comonscat%'] = float(rowData['commonscat'])/(float(rowData['total'])/float(100))
 	#Add rowData to all results
 	res[monumentList] = rowData
 
