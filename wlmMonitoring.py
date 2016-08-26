@@ -83,7 +83,6 @@ for row in lists:
 	res[monumentList] = rowData
 
 #Data to JSON
-print json.dumps(res)
 of = open('output.json', 'w')
 of.write(json.dumps(res))
 os.system('cp output.json /data/project/urbanecmbot/test/public/wlmMonitoringOutput.json')
